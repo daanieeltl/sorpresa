@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para ti 💙</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   FONDO
+========================= */
+
+.escena {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.15)
+        ),
+        url("foto.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   BOTÓN INICIAL
+========================= */
+
+.inicio {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #fff3a6;
+
+    z-index: 100;
+}
+
+.boton {
+    padding: 18px 35px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: white;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    color: #444;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25);
+
+    transition: 0.3s;
+}
+
+.boton:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.texto {
+    position: absolute;
+
+    top: 12%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-size: clamp(40px, 7vw, 70px);
+
+    font-weight: bold;
+
+    text-shadow:
+        3px 4px 6px rgba(0,0,0,0.6);
+
+    z-index: 30;
+
+    opacity: 0;
+
+    animation:
+        aparecerTexto 1.5s ease forwards;
+
+    animation-delay: 0.5s;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   CORAZÓN AZUL
+========================= */
+
+.corazon {
+    position: absolute;
+
+    top: 23%;
+    left: 50%;
+
+    width: 65px;
+    height: 65px;
+
+    background: #168cff;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg)
+        scale(0);
+
+    z-index: 31;
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,0.4);
+
+    animation:
+        aparecerCorazon 1.3s ease forwards;
+
+    animation-delay: 0.8s;
+}
+
+.corazon::before,
+.corazon::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    background: #168cff;
+
+    border-radius: 50%;
+}
+
+.corazon::before {
+    top: -32px;
+    left: 0;
+}
+
+.corazon::after {
+    top: 0;
+    left: 32px;
+}
+
+
+/* =========================
+   FLORES
+========================= */
+
+.flor {
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    opacity: 0;
+
+    z-index: 25;
+
+    animation:
+        crecerFlor 1.5s cubic-bezier(.17,.67,.35,1.4)
+        forwards;
+}
+
+
+/* PÉTALOS */
+
+.petalo {
+    position: absolute;
+
+    width: 25px;
+    height: 38px;
+
+    left: 20px;
+    top: 14px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffbd0,
+            #ffe52e 45%,
+            #e5ae00 100%
+        );
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,0.25);
+
+    transform-origin:
+        center bottom;
+}
+
+
+/* POSICIÓN PÉTALOS */
+
+.petalo:nth-child(1) {
+    transform:
+        rotate(0deg)
+        translateY(-15px);
+}
+
+.petalo:nth-child(2) {
+    transform:
+        rotate(72deg)
+        translateY(-15px);
+}
+
+.petalo:nth-child(3) {
+    transform:
+        rotate(144deg)
+        translateY(-15px);
+}
+
+.petalo:nth-child(4) {
+    transform:
+        rotate(216deg)
+        translateY(-15px);
+}
+
+.petalo:nth-child(5) {
+    transform:
+        rotate(288deg)
+        translateY(-15px);
+}
+
+
+/* CENTRO */
+
+.centro {
+
+    position: absolute;
+
+    width: 23px;
+    height: 23px;
+
+    left: 21px;
+    top: 21px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff5a0,
+            #e6a500 70%,
+            #b87500
+        );
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.3),
+        0 2px 5px rgba(0,0,0,0.35);
+
+    z-index: 5;
+}
+
+
+/* TALLO */
+
+.flor::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 65px;
+
+    left: 30px;
+    top: 53px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            to right,
+            #24752b,
+            #65b84c,
+            #24752b
+        );
+
+    transform:
+        rotate(var(--inclinacion));
+
+    transform-origin:
+        top center;
+
+    z-index: -1;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes aparecerTexto {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(-20px)
+            scale(0.7);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes aparecerCorazon {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(0);
+    }
+
+    70% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1);
+    }
+}
+
+
+@keyframes crecerFlor {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0)
+            rotate(-30deg);
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15)
+            rotate(5deg);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- PANTALLA INICIAL -->
+
+<div class="inicio" id="inicio">
+
+    <button class="boton" onclick="sorpresa()">
+        🌼 Haz clic 🌼
+    </button>
+
+</div>
+
+
+<!-- ESCENA -->
+
+<div class="escena" id="escena">
+
+    <div class="texto">
+        Para ti
+    </div>
+
+    <div class="corazon"></div>
+
+</div>
+
+
+<script>
+
+function crearFlor(x, y, retraso, tamaño) {
+
+    const flor =
+        document.createElement("div");
+
+    flor.className = "flor";
+
+    flor.style.left =
+        x + "px";
+
+    flor.style.top =
+        y + "px";
+
+    flor.style.width =
+        tamaño + "px";
+
+    flor.style.height =
+        tamaño + "px";
+
+    flor.style.animationDelay =
+        retraso + "s";
+
+    flor.style.setProperty(
+        "--inclinacion",
+        (Math.random() * 25 - 12) + "deg"
+    );
+
+
+    /* Crear pétalos */
+
+    for (let i = 0; i < 5; i++) {
+
+        const petalo =
+            document.createElement("div");
+
+        petalo.className =
+            "petalo";
+
+        flor.appendChild(petalo);
+    }
+
+
+    /* Centro */
+
+    const centro =
+        document.createElement("div");
+
+    centro.className =
+        "centro";
+
+    flor.appendChild(centro);
+
+
+    document
+        .getElementById("escena")
+        .appendChild(flor);
+}
+
+
+
+function sorpresa() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    inicio.style.opacity = "0";
+
+    inicio.style.transition =
+        "opacity 0.8s";
+
+
+    setTimeout(() => {
+
+        inicio.style.display =
+            "none";
+
+    }, 800);
+
+
+    /*
+        Posición del corazón
+    */
+
+    const centroX =
+        window.innerWidth / 2;
+
+    const centroY =
+        window.innerHeight * 0.23;
+
+
+    /*
+        Flores alrededor del corazón
+    */
+
+    const flores = [
+
+        [-120, -35],
+        [-70, -75],
+        [-15, -90],
+        [45, -75],
+        [100, -35],
+
+        [-145, 15],
+        [145, 15],
+
+        [-120, 70],
+        [-65, 95],
+        [0, 105],
+        [65, 95],
+        [120, 70]
+
+    ];
+
+
+    flores.forEach((pos, i) => {
+
+        crearFlor(
+
+            centroX + pos[0],
+
+            centroY + pos[1],
+
+            1.2 + i * 0.13,
+
+            50 + Math.random() * 18
+
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
